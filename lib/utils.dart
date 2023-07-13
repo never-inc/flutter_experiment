@@ -1,7 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sample/repositories/local_database/local_database_repository.dart';
-import 'package:flutter_sample/repositories/local_database/shared_preferences/bridge/shared_preferences_repository_3.dart'
-    as riverpod;
 import 'package:flutter_sample/repositories/local_database/shared_preferences/bridge/shared_preferences_repository_4.dart'
     as get_it;
 import 'package:flutter_sample/use_cases/counter/flutter_bloc/counter_controller.dart'
@@ -36,5 +34,5 @@ final flutterSecureStorageProvider = Provider<FlutterSecureStorage>(
   (_) => const FlutterSecureStorage(),
 );
 final localDatabaseRepositoryProvider = Provider<LocalDatabaseRepository>(
-  riverpod.SharedPreferencesRepository.new,
+  (_) => throw UnimplementedError(),
 );
