@@ -46,7 +46,7 @@ void main() {
             key: key.name,
             value: anyNamed('value'),
           ),
-        ).thenAnswer((realInvocation) async {});
+        ).thenAnswer((_) async {});
         when(
           mockFlutterSecureStorage.read(key: key.name),
         ).thenAnswer((_) async => '0');
@@ -87,7 +87,7 @@ void main() {
             key: key.name,
             value: anyNamed('value'),
           ),
-        ).thenAnswer((realInvocation) async {});
+        ).thenAnswer((_) async {});
         when(
           mockFlutterSecureStorage.read(key: key.name),
         ).thenAnswer((_) async => '0');
