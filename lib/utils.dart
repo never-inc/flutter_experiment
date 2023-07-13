@@ -4,6 +4,8 @@ import 'package:flutter_sample/repositories/local_database/shared_preferences/br
     as riverpod;
 import 'package:flutter_sample/repositories/local_database/shared_preferences/bridge/shared_preferences_repository_4.dart'
     as get_it;
+import 'package:flutter_sample/use_cases/counter/flutter_bloc/counter_controller.dart'
+    as flutter_bloc;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,7 +19,7 @@ enum DatabaseKey {
 final getIt = GetIt.instance;
 void setUp() {
   getIt
-    ..registerLazySingletonAsync<SharedPreferences>(
+    ..registerSingletonAsync<SharedPreferences>(
       SharedPreferences.getInstance,
     )
     ..registerLazySingleton<FlutterSecureStorage>(
@@ -25,10 +27,13 @@ void setUp() {
     )
     ..registerLazySingleton<LocalDatabaseRepository>(
       get_it.SharedPreferencesRepository.new,
+    )
+    ..registerFactory<flutter_bloc.CounterController>(
+      flutter_bloc.CounterController.new,
     );
 }
 
-/// Providers
+/// Provider
 final sharedPreferencesProvider = Provider<SharedPreferences>(
   (_) => throw UnimplementedError(),
 );

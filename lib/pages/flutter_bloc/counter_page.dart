@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sample/use_cases/counter/flutter_bloc/counter_controller.dart';
+import 'package:flutter_sample/utils.dart';
 
 class CounterPage extends StatefulWidget {
   const CounterPage({super.key});
@@ -18,11 +21,14 @@ class CounterPage extends StatefulWidget {
 }
 
 class _State extends State<CounterPage> {
-  int _counter = 0;
+  late final CounterController _counterController;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
+  @override
+  void initState() {
+    _counterController = getIt<CounterController>();
+    super.initState();
+    Future(() async {
+      await _counterController.fetch();
     });
   }
 
@@ -33,22 +39,21 @@ class _State extends State<CounterPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('カウンター flutter_bloc'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
+      body: BlocBuilder<CounterController, int>(
+        bloc: _counterController,
+        builder: (context, state) {
+          return Center(
+            child: Text(
+              '$state',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-          ],
-        ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () async {
+          await _counterController.increment();
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

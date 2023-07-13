@@ -20,7 +20,7 @@ class MainPage extends StatelessWidget {
             children: [
               ListTile(
                 title: const Text(
-                  'カウンター画面（flutter_bloc）',
+                  'カウンター flutter_bloc',
                 ),
                 trailing: const Icon(
                   Icons.arrow_forward_ios_rounded,
@@ -33,7 +33,7 @@ class MainPage extends StatelessWidget {
               const Divider(height: 1),
               ListTile(
                 title: const Text(
-                  'カウンター画面（riverpod）',
+                  'カウンター riverpod',
                 ),
                 trailing: const Icon(
                   Icons.arrow_forward_ios_rounded,

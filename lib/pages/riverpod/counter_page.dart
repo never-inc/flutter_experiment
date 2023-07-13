@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_sample/use_cases/counter/riverpod/counter_controller.dart';
 
-class CounterPage extends StatefulWidget {
+class CounterPage extends ConsumerWidget {
   const CounterPage({super.key});
 
   static Future<void> show(BuildContext context) {
@@ -14,41 +16,23 @@ class CounterPage extends StatefulWidget {
   }
 
   @override
-  State<CounterPage> createState() => _State();
-}
-
-class _State extends State<CounterPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(counterControllerProvider).asData?.value ?? 0;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('カウンター riverpod'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: Text(
+          '$state',
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () async {
+          await ref.read(counterControllerProvider.notifier).increment();
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
