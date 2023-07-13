@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_sample/use_cases/counter/flutter_bloc/counter_controller.dart';
+import 'package:flutter_sample/pages/flutter_bloc/counter/counter_controller.dart';
 import 'package:flutter_sample/utils.dart';
 
 class CounterPage extends StatefulWidget {

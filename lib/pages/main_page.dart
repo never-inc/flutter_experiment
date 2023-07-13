@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sample/pages/flutter_bloc/counter_page.dart'
-    as flutter_bloc;
-import 'package:flutter_sample/pages/riverpod/counter_page.dart' as riverpod;
+import 'package:flutter_sample/pages/flutter_bloc/index.dart' as flutter_bloc;
+import 'package:flutter_sample/pages/riverpod/index.dart' as riverpod;
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
