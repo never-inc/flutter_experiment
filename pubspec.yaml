@@ -11,8 +11,20 @@ dependencies:
 
   cupertino_icons: ^1.0.2
 
+  # Riverpod
+  flutter_riverpod: ^2.3.6
+
+  # DI
+  get_it: ^7.6.0
+
+  # Local Database
+  shared_preferences: ^2.2.0
+  flutter_secure_storage: ^8.0.0
+
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  integration_test:
     sdk: flutter
 
   # Mock
