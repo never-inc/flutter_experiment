@@ -10,11 +10,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Enum
-enum DatabaseKey {
-  counter,
-}
-
 /// Get it
 final getIt = GetIt.instance;
 void setUp() {

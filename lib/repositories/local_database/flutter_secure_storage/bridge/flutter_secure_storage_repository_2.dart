@@ -1,5 +1,5 @@
+import 'package:flutter_sample/repositories/local_database/database_key.dart';
 import 'package:flutter_sample/repositories/local_database/local_database_repository.dart';
-import 'package:flutter_sample/utils.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class FlutterSecureStorageRepository implements LocalDatabaseRepository {

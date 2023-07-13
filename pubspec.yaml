@@ -36,5 +36,8 @@ dev_dependencies:
   # Static analysis
   pedantic_mono: ^1.23.0
 
+  # Build Runner
+  build_runner: ^2.4.6
+
 flutter:
   uses-material-design: true
