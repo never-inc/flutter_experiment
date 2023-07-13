@@ -18,7 +18,7 @@ import 'shared_preferences_repository_test.mocks.dart';
 void main() {
   const key = DatabaseKey.counter;
 
-  group('SharedPreferencesRepository オフラインテスト', () {
+  group('SharedPreferencesRepository テスト', () {
     late final MockSharedPreferences mockSharedPreferences;
 
     setUpAll(() {
