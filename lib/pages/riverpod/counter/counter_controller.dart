@@ -22,7 +22,7 @@ final class CounterController extends AutoDisposeAsyncNotifier<int> {
   Future<void> increment() async {
     state = await AsyncValue.guard<int>(() async {
       final value = (state.asData?.value ?? 0) + 1;
-      await ref.watch(localDatabaseRepositoryProvider).saveInt(_key, value);
+      await ref.read(localDatabaseRepositoryProvider).saveInt(_key, value);
       return value;
     });
   }
