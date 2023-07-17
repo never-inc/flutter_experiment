@@ -21,8 +21,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// DataSource
-  final sharedPreferences = await SharedPreferences.getInstance();
-  const flutterSecureStorage = FlutterSecureStorage();
+  final dataSource = await Future(() {
+    if (kIsWeb) {
+      return const FlutterSecureStorage();
+    } else {
+      return SharedPreferences.getInstance();
+    }
+  });
 
   /// Get it
   getIt.registerFactory<bloc_counter.CounterController>(
@@ -31,7 +36,7 @@ void main() async {
   if (kIsWeb) {
     getIt
       ..registerLazySingleton<FlutterSecureStorage>(
-        () => flutterSecureStorage,
+        () => dataSource as FlutterSecureStorage,
       )
       ..registerLazySingleton<LocalDatabaseRepository>(
         fss4.FlutterSecureStorageRepository.new,
@@ -39,7 +44,7 @@ void main() async {
   } else {
     getIt
       ..registerLazySingleton<SharedPreferences>(
-        () => sharedPreferences,
+        () => dataSource as SharedPreferences,
       )
       ..registerLazySingleton<LocalDatabaseRepository>(
         spr4.SharedPreferencesRepository.new,
@@ -52,11 +57,13 @@ void main() async {
       overrides: [
         // 👇 Webなら FlutterSecureStorageRepository を使う
         if (kIsWeb) ...[
-          flutterSecureStorageProvider.overrideWithValue(flutterSecureStorage),
+          flutterSecureStorageProvider
+              .overrideWithValue(dataSource as FlutterSecureStorage),
           localDatabaseRepositoryProvider
               .overrideWith(fss3.FlutterSecureStorageRepository.new),
         ] else ...[
-          sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+          sharedPreferencesProvider
+              .overrideWithValue(dataSource as SharedPreferences),
           localDatabaseRepositoryProvider
               .overrideWith(spr3.SharedPreferencesRepository.new),
         ],

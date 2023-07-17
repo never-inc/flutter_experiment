@@ -29,6 +29,7 @@ final class GetGithubUserReq implements ReqBase {
   String get path => 'users/$username';
 }
 
+/// apiメソッド
 Future<http.Response> api(ReqBase req) async {
   try {
     final res = await http.get(
@@ -45,8 +46,10 @@ void main() {
     test(
       'テスト1',
       () async {
+        /// 実行
         final res1 = await api(GetGithubUsersReq());
         print(res1.body);
+
         final res2 = await api(GetGithubUserReq(username: 'hukusuke1007'));
         print(res2.body);
       },
