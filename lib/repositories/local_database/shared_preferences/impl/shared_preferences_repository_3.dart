@@ -22,6 +22,7 @@ class SharedPreferencesRepository implements LocalDatabaseRepository {
   @override
   Future<int?> fetchInt(DatabaseKey key) async {
     final db = _ref.read(sharedPreferencesProvider);
+
     return db.getInt(key.name);
   }
 }

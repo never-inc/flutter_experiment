@@ -1,13 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sample/repositories/local_database/database_key.dart';
-import 'package:flutter_sample/repositories/local_database/flutter_secure_storage/bridge/flutter_secure_storage_repository_3.dart'
+import 'package:flutter_sample/repositories/local_database/flutter_secure_storage/impl/flutter_secure_storage_repository_3.dart'
     as fss3;
-import 'package:flutter_sample/repositories/local_database/flutter_secure_storage/bridge/flutter_secure_storage_repository_4.dart'
+import 'package:flutter_sample/repositories/local_database/flutter_secure_storage/impl/flutter_secure_storage_repository_4.dart'
     as fss4;
 import 'package:flutter_sample/repositories/local_database/local_database_repository.dart';
-import 'package:flutter_sample/repositories/local_database/shared_preferences/bridge/shared_preferences_repository_3.dart'
+import 'package:flutter_sample/repositories/local_database/shared_preferences/impl/shared_preferences_repository_3.dart'
     as spr3;
-import 'package:flutter_sample/repositories/local_database/shared_preferences/bridge/shared_preferences_repository_4.dart'
+import 'package:flutter_sample/repositories/local_database/shared_preferences/impl/shared_preferences_repository_4.dart'
     as spr4;
 import 'package:flutter_sample/utils.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
