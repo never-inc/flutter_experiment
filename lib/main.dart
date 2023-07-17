@@ -50,7 +50,7 @@ void main() async {
   runApp(
     ProviderScope(
       overrides: [
-        // 👇 Webなら flutterSecureStorage を使う
+        // 👇 Webなら FlutterSecureStorageRepository を使う
         if (kIsWeb) ...[
           flutterSecureStorageProvider.overrideWithValue(flutterSecureStorage),
           localDatabaseRepositoryProvider
