@@ -8,7 +8,7 @@ final sharedPreferencesRepositoryProvider =
   SharedPreferencesRepository.new,
 );
 
-class SharedPreferencesRepository implements LocalDatabaseRepository {
+final class SharedPreferencesRepository implements LocalDatabaseRepository {
   SharedPreferencesRepository(this._ref);
 
   final Ref _ref;
@@ -22,7 +22,6 @@ class SharedPreferencesRepository implements LocalDatabaseRepository {
   @override
   Future<int?> fetchInt(DatabaseKey key) async {
     final db = _ref.read(sharedPreferencesProvider);
-
     return db.getInt(key.name);
   }
 }

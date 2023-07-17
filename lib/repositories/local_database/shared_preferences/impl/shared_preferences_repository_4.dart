@@ -3,7 +3,7 @@ import 'package:flutter_sample/repositories/local_database/local_database_reposi
 import 'package:flutter_sample/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreferencesRepository implements LocalDatabaseRepository {
+final class SharedPreferencesRepository implements LocalDatabaseRepository {
   @override
   Future<void> saveInt(DatabaseKey key, int value) async {
     final db = getIt<SharedPreferences>();

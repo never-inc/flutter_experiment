@@ -9,7 +9,7 @@ final counterControllerProvider =
   CounterController.new,
 );
 
-class CounterController extends AutoDisposeAsyncNotifier<int> {
+final class CounterController extends AutoDisposeAsyncNotifier<int> {
   static const _key = DatabaseKey.counter;
 
   @override
