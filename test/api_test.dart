@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_sample/exceptions/app_exception.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -35,6 +36,7 @@ Future<http.Response> api(ReqBase req) async {
     final res = await http.get(
       Uri.https(req.baseUrl, req.path),
     );
+
     return res;
   } on Exception catch (e) {
     throw AppException.error('エラーが発生しました: $e');
@@ -48,10 +50,10 @@ void main() {
       () async {
         /// 実行
         final res1 = await api(GetGithubUsersReq());
-        print(res1.body);
+        debugPrint(res1.body);
 
         final res2 = await api(GetGithubUserReq(username: 'hukusuke1007'));
-        print(res2.body);
+        debugPrint(res2.body);
       },
     );
   });

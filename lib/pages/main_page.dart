@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample/pages/flutter_bloc/index.dart' as flutter_bloc;
+import 'package:flutter_sample/pages/memory_leaks/memory_leaks_sample_page.dart';
 import 'package:flutter_sample/pages/riverpod/index.dart' as riverpod;
 
 class MainPage extends StatelessWidget {
@@ -40,6 +41,19 @@ class MainPage extends StatelessWidget {
                 ),
                 onTap: () {
                   riverpod.CounterPage.show(context);
+                },
+              ),
+              const Divider(height: 1),
+              ListTile(
+                title: const Text(
+                  'Memory Leak Sample',
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 16,
+                ),
+                onTap: () {
+                  MemoryLeakSamplePage.show(context);
                 },
               ),
               const Divider(height: 1),
