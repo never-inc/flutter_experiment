@@ -5,6 +5,7 @@ import 'package:flutter_sample/pages/memory_leaks/global_object_test.dart';
 import 'package:flutter_sample/pages/memory_leaks/riverpod_test.dart';
 import 'package:flutter_sample/pages/memory_leaks/scope_test.dart';
 import 'package:flutter_sample/pages/memory_leaks/scroll_controller_test.dart';
+import 'package:flutter_sample/pages/memory_leaks/scroll_widget_reuse_test.dart';
 import 'package:flutter_sample/pages/memory_leaks/static_getter_test.dart';
 import 'package:flutter_sample/pages/memory_leaks/stream_controller_test.dart';
 
@@ -27,40 +28,67 @@ class MemoryLeakSamplePage extends ConsumerWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Memory Leak Sample'),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 16),
                 child: ScopeTest(),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 16),
                 child: GlobalObjectTest(),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 16),
                 child: StaticGetterTest(),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 16),
                 child: SizedBox(
                   height: 96,
                   child: ScrollControllerTest(),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 16),
                 child: SizedBox(
                   height: 96,
                   child: StreamControllerTest(),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 16),
                 child: ReverpodTest(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Column(
+                  children: [
+                    const Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Scroll Reuse Widget Test',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    ListTile(
+                      title: const Text('リークする例'),
+                      onTap: () {
+                        ScrollWidgetReuseTest1.show(context);
+                      },
+                    ),
+                    const Divider(height: 1),
+                    ListTile(
+                      title: const Text('リークしない実装'),
+                      onTap: () {
+                        ScrollWidgetReuseTest2.show(context);
+                      },
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
