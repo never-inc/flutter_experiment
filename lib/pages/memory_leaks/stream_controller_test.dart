@@ -7,23 +7,23 @@ class StreamControllerTest extends StatefulWidget {
   const StreamControllerTest({super.key});
 
   @override
-  State<StatefulWidget> createState() => _Body();
+  State<StreamControllerTest> createState() => StreamControllerTestState();
 }
 
-class _Body extends State<StreamControllerTest> {
-  late final StreamController<DummyObject> streamController;
-  final List<StreamSubscription<DummyObject>> disposers = [];
+class StreamControllerTestState extends State<StreamControllerTest> {
+  late final StreamController<DummyObject> _streamController;
+  final List<StreamSubscription<DummyObject>> _disposers = [];
 
   @override
   void initState() {
-    streamController = StreamController<DummyObject>.broadcast();
+    _streamController = StreamController<DummyObject>.broadcast();
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-    streamController.close();
+    _streamController.close();
   }
 
   @override
@@ -47,10 +47,10 @@ class _Body extends State<StreamControllerTest> {
                   'Listen',
                 ),
                 onPressed: () {
-                  final disposer = streamController.stream.listen((event) {
+                  final disposer = _streamController.stream.listen((event) {
                     debugPrint('scroll: ${event.hashCode}');
                   });
-                  disposers.add(disposer);
+                  _disposers.add(disposer);
                 },
               ),
             ),
@@ -61,7 +61,7 @@ class _Body extends State<StreamControllerTest> {
                 ),
                 onPressed: () {
                   final data = DummyObject.create();
-                  streamController.sink.add(data);
+                  _streamController.sink.add(data);
                 },
               ),
             ),
@@ -71,7 +71,7 @@ class _Body extends State<StreamControllerTest> {
                   'Dispose',
                 ),
                 onPressed: () {
-                  disposers
+                  _disposers
                     ..forEach((element) {
                       element.cancel();
                     })

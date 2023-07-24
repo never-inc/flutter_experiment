@@ -5,24 +5,23 @@ class ScrollControllerTest extends StatefulWidget {
   const ScrollControllerTest({super.key});
 
   @override
-  State<StatefulWidget> createState() => _Body();
+  State<ScrollControllerTest> createState() => ScrollControllerTestState();
 }
 
-class _Body extends State<ScrollControllerTest> {
-  late final ScrollController scrollController;
-
-  final List<VoidCallback> listeners = [];
+class ScrollControllerTestState extends State<ScrollControllerTest> {
+  late final ScrollController _scrollController;
+  final List<VoidCallback> _listeners = [];
 
   @override
   void initState() {
-    scrollController = ScrollController();
+    _scrollController = ScrollController();
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-    scrollController.dispose();
+    _scrollController.dispose();
   }
 
   @override
@@ -51,8 +50,8 @@ class _Body extends State<ScrollControllerTest> {
                     debugPrint('scroll: ${obj.hashCode}');
                   }
 
-                  scrollController.addListener(listener);
-                  listeners.add(listener);
+                  _scrollController.addListener(listener);
+                  _listeners.add(listener);
                 },
               ),
             ),
@@ -62,8 +61,8 @@ class _Body extends State<ScrollControllerTest> {
                   'Remove Listener',
                 ),
                 onPressed: () {
-                  listeners
-                    ..forEach(scrollController.removeListener)
+                  _listeners
+                    ..forEach(_scrollController.removeListener)
                     ..clear();
                 },
               ),
@@ -72,7 +71,7 @@ class _Body extends State<ScrollControllerTest> {
         ),
         Expanded(
           child: ListView.builder(
-            controller: scrollController,
+            controller: _scrollController,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Text('$index');

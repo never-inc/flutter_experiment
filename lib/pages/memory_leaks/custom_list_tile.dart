@@ -4,11 +4,12 @@ class CustomListTile extends StatefulWidget {
   const CustomListTile(this.title, {super.key});
 
   final String title;
+
   @override
-  State<CustomListTile> createState() => _Body();
+  State<CustomListTile> createState() => CustomListTileState();
 }
 
-class _Body extends State<CustomListTile> {
+class CustomListTileState extends State<CustomListTile> {
   @override
   void initState() {
     debugPrint('initState: ${widget.title}, $hashCode');
