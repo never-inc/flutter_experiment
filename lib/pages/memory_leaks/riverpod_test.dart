@@ -16,8 +16,8 @@ final dummyObjectAutoDisposeProvider = Provider.autoDispose<DummyObject>((ref) {
   return DummyObject.create();
 });
 
-class ReverpodTest extends ConsumerWidget {
-  const ReverpodTest({super.key});
+class RiverpodTest extends ConsumerWidget {
+  const RiverpodTest({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,8 +49,9 @@ class ReverpodTest extends ConsumerWidget {
                 child: const Text(
                   'Run AutoDispose',
                 ),
-                onPressed: () {
+                onPressed: () async {
                   final value = ref.read(dummyObjectAutoDisposeProvider);
+                  await Future<void>.delayed(const Duration(seconds: 3));
                   debugPrint('${value.hashCode}');
                 },
               ),

@@ -47,8 +47,10 @@ class StreamControllerTestState extends State<StreamControllerTest> {
                   'Listen',
                 ),
                 onPressed: () {
-                  final disposer = _streamController.stream.listen((event) {
-                    debugPrint('scroll: ${event.hashCode}');
+                  final disposer =
+                      _streamController.stream.listen((event) async {
+                    await Future<void>.delayed(const Duration(seconds: 3));
+                    debugPrint('event: ${event.hashCode}');
                   });
                   _disposers.add(disposer);
                 },

@@ -7,8 +7,8 @@ class Title {
 
 class Message {
   Message._();
-  static Title title1 = Title('タイトル1');
-  static Title get title2 => Title('タイトル2');
+  static final Title title1 = Title('');
+  static Title get title2 => Title('');
 }
 
 class StaticGetterTest extends StatelessWidget {
@@ -34,7 +34,8 @@ class StaticGetterTest extends StatelessWidget {
                   'Run Static',
                 ),
                 onPressed: () {
-                  debugPrint(Message.title1.value);
+                  final title = Message.title1;
+                  debugPrint(title.hashCode.toString());
                 },
               ),
             ),
@@ -43,8 +44,12 @@ class StaticGetterTest extends StatelessWidget {
                 child: const Text(
                   'Run Getter',
                 ),
-                onPressed: () {
-                  debugPrint(Message.title2.value);
+                onPressed: () async {
+                  final title = Message.title2;
+                  await Future<void>.delayed(
+                    const Duration(seconds: 3),
+                  ); // 待つ間にスナップショットを撮る
+                  debugPrint(title.hashCode.toString());
                 },
               ),
             ),

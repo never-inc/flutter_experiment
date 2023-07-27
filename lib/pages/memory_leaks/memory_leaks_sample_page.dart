@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_sample/pages/memory_leaks/composition_test.dart';
+import 'package:flutter_sample/pages/memory_leaks/const_test.dart';
 import 'package:flutter_sample/pages/memory_leaks/global_object_test.dart';
 import 'package:flutter_sample/pages/memory_leaks/riverpod_test.dart';
 import 'package:flutter_sample/pages/memory_leaks/scope_test.dart';
@@ -61,7 +63,53 @@ class MemoryLeakSamplePage extends ConsumerWidget {
               ),
               const Padding(
                 padding: EdgeInsets.only(bottom: 16),
-                child: ReverpodTest(),
+                child: RiverpodTest(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: const Text('CompositionTest 1'),
+                      onTap: () {
+                        Navigator.of(context, rootNavigator: true).push<void>(
+                          CupertinoPageRoute<void>(
+                            settings:
+                                const RouteSettings(name: 'composition_test'),
+                            builder: (_) {
+                              final data = CompositionData('test');
+                              return CompositionTest(data);
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                    const Divider(height: 1),
+                    ListTile(
+                      title: const Text('CompositionTest 2'),
+                      onTap: () {
+                        final data = CompositionData('test');
+                        Navigator.of(context, rootNavigator: true).push<void>(
+                          CupertinoPageRoute<void>(
+                            settings:
+                                const RouteSettings(name: 'composition_test'),
+                            builder: (_) {
+                              return CompositionTest(data);
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                    const Divider(height: 1),
+                    ListTile(
+                      title: const Text('ConstTest'),
+                      onTap: () {
+                        ConstTest.show(context);
+                      },
+                    ),
+                    const Divider(height: 1),
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 16),
