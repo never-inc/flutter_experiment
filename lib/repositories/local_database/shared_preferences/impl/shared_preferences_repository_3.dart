@@ -8,7 +8,7 @@ final sharedPreferencesRepositoryProvider =
   SharedPreferencesRepository.new,
 );
 
-final class SharedPreferencesRepository implements LocalDatabaseRepository {
+final class SharedPreferencesRepository extends LocalDatabaseRepository {
   SharedPreferencesRepository(this._ref);
 
   final Ref _ref;

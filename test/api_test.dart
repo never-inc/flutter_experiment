@@ -3,12 +3,12 @@ import 'package:flutter_sample/exceptions/app_exception.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 
-abstract interface class ReqBase {
+abstract class ReqBase {
   String get baseUrl;
   String get path;
 }
 
-final class GetGithubUsersReq implements ReqBase {
+final class GetGithubUsersReq extends ReqBase {
   @override
   String get baseUrl => 'api.github.com';
 
@@ -16,7 +16,7 @@ final class GetGithubUsersReq implements ReqBase {
   String get path => 'users';
 }
 
-final class GetGithubUserReq implements ReqBase {
+final class GetGithubUserReq extends ReqBase {
   GetGithubUserReq({
     required this.username,
   });

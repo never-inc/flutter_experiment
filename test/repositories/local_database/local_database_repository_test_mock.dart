@@ -1,7 +1,7 @@
 import 'package:flutter_sample/repositories/local_database/database_key.dart';
 import 'package:flutter_sample/repositories/local_database/local_database_repository.dart';
 
-final class LocalDatabaseRepositoryMock implements LocalDatabaseRepository {
+final class LocalDatabaseRepositoryMock extends LocalDatabaseRepository {
   /// Mockデータを設定するためのハンドラー
   Future<int?> Function(DatabaseKey key)? fetchIntHandler;
   Future<void> Function(DatabaseKey key, int value)? saveIntHandler;

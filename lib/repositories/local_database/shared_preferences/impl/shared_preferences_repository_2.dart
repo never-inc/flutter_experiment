@@ -2,7 +2,7 @@ import 'package:flutter_sample/repositories/local_database/database_key.dart';
 import 'package:flutter_sample/repositories/local_database/local_database_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final class SharedPreferencesRepository implements LocalDatabaseRepository {
+final class SharedPreferencesRepository extends LocalDatabaseRepository {
   SharedPreferencesRepository(this._db);
 
   final SharedPreferences _db;

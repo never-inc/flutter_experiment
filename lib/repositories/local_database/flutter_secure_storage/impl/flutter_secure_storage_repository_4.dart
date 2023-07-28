@@ -3,7 +3,7 @@ import 'package:flutter_sample/repositories/local_database/local_database_reposi
 import 'package:flutter_sample/utils.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-final class FlutterSecureStorageRepository implements LocalDatabaseRepository {
+final class FlutterSecureStorageRepository extends LocalDatabaseRepository {
   @override
   Future<void> saveInt(DatabaseKey key, int value) async {
     final db = getIt<FlutterSecureStorage>();
