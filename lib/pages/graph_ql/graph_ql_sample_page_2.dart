@@ -14,6 +14,7 @@ class GraphQLSamplePage2 extends StatelessWidget {
     );
   }
 
+  /// https://rickandmortyapi.com/documentation/
   final ValueNotifier<GraphQLClient> _client = ValueNotifier(
     GraphQLClient(
       link: HttpLink('https://rickandmortyapi.com/graphql'),
