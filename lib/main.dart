@@ -15,10 +15,14 @@ import 'package:flutter_sample/repositories/local_database/shared_preferences/im
     as spr4;
 import 'package:flutter_sample/utils.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// For GraphQLFlutter
+  await initHiveForFlutter();
 
   /// DataSource
   final dataSource = await Future(() {

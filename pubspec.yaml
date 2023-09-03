@@ -27,6 +27,9 @@ dependencies:
   # http
   http:
 
+  # Graphql
+  graphql_flutter:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -41,6 +44,9 @@ dev_dependencies:
 
   # Build Runner
   build_runner: ^2.4.6
+
+  # Graphql
+  graphql_codegen: ^0.13.5
 
 flutter:
   uses-material-design: true
