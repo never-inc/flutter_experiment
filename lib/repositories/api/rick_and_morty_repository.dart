@@ -43,14 +43,17 @@ class RickAndMortyRepository {
     if (kDebugMode) {
       print(result.data);
     }
+    // TODO(shohei): Freezedでリファクタリング
     final nameMap = (result.data?['characters']
         as Map<String, dynamic>?)?['results'] as List<dynamic>?;
     if (nameMap == null) {
       return [];
     }
-    return nameMap
+    final data = nameMap
         .map((e) => (e as Map<String, dynamic>?)?['name'] as String?)
         .whereType<String>()
         .toList();
+
+    return data;
   }
 }

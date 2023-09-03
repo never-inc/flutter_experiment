@@ -45,6 +45,8 @@ class GraphQLSamplePage2 extends StatelessWidget {
             if (result.isLoading) {
               return const Text('Loading');
             }
+
+            // TODO(shohei): Freezedでリファクタリング
             final nameMap = (result.data?['characters']
                 as Map<String, dynamic>?)?['results'] as List<dynamic>?;
             if (nameMap == null) {
@@ -54,6 +56,8 @@ class GraphQLSamplePage2 extends StatelessWidget {
                 .map((e) => (e as Map<String, dynamic>?)?['name'] as String?)
                 .whereType<String>()
                 .toList();
+
+            /// Widget
             return ListView.builder(
               itemBuilder: (context, index) {
                 final data = items[index];
