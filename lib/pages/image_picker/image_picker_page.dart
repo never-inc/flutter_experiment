@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
@@ -27,6 +28,20 @@ class _State extends State<ImagePickerPage> {
   @override
   Widget build(BuildContext context) {
     final imageBytes = _imageBytes;
+
+    Future<void> onPickImage() async {
+      final xFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (xFile == null) {
+        return;
+      }
+      debugPrint(xFile.path);
+      final bytes = await xFile.readAsBytes();
+      setState(() {
+        _imageBytes = bytes;
+      });
+      File(xFile.path).deleteSync();
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -46,19 +61,7 @@ class _State extends State<ImagePickerPage> {
         Column(
           children: [
             FilledButton(
-              onPressed: () async {
-                final xFile =
-                    await ImagePicker().pickImage(source: ImageSource.gallery);
-                if (xFile == null) {
-                  return;
-                }
-                debugPrint(xFile.path);
-                final bytes = await xFile.readAsBytes();
-                setState(() {
-                  _imageBytes = bytes;
-                });
-                // File(xFile.path).deleteSync();
-              },
+              onPressed: onPickImage,
               child: const Text(
                 '画像選択',
                 maxLines: 1,
