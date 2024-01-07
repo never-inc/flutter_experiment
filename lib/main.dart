@@ -58,7 +58,7 @@ void main() async {
 
   /// Delete Cache
   Future(() async {
-    await TmpCacheDirectory.setup();
+    await TmpCacheDirectory.configure();
     await TmpCacheDirectory.deleteFiles();
   }).ignore();
 

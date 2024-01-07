@@ -8,12 +8,10 @@ class TmpCacheDirectory {
 
   static late final Directory _dir;
 
-  static Future<void> setup() async {
+  static Future<void> configure() async {
     if (Platform.isIOS) {
-      // /Users/xxx/Library/Developer/CoreSimulator/Devices/8453C0AB-E640-4044-87E3-7A891199062E/data/Containers/Data/Application/1B2DA1B2-CFEA-4070-8F23-F83A7B8DF6CE/tmp/
       _dir = Directory.systemTemp;
     } else {
-      // /data/user/0/com.example.flutter_sample/cache/
       _dir = await getTemporaryDirectory();
     }
   }
