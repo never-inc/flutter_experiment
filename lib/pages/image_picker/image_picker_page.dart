@@ -69,9 +69,8 @@ class _State extends State<ImagePickerPage> {
               children: [
                 Flexible(
                   child: FilledButton(
-                    onPressed: () async {
-                      final files =
-                          await FileRepository.getInstance.fetchTempFiles();
+                    onPressed: () {
+                      final files = FileRepository.getInstance.fetchTempFiles();
                       if (files.isEmpty) {
                         debugPrint('empty');
                         return;
@@ -88,8 +87,8 @@ class _State extends State<ImagePickerPage> {
                 ),
                 Flexible(
                   child: FilledButton(
-                    onPressed: () async {
-                      await FileRepository.getInstance.clearTempFiles();
+                    onPressed: () {
+                      FileRepository.getInstance.clearTempFiles();
                     },
                     child: const Text(
                       'キャッシュ削除',
