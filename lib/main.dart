@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sample/app.dart';
 import 'package:flutter_sample/pages/flutter_bloc/counter/counter_controller.dart'
     as bloc_counter;
-import 'package:flutter_sample/repositories/file/file_repository.dart';
+import 'package:flutter_sample/pages/image_picker/tmp_cache_directory.dart';
 import 'package:flutter_sample/repositories/local_database/flutter_secure_storage/impl/flutter_secure_storage_repository_3.dart'
     as fss3;
 import 'package:flutter_sample/repositories/local_database/flutter_secure_storage/impl/flutter_secure_storage_repository_4.dart'
@@ -56,7 +56,11 @@ void main() async {
       );
   }
 
-  await FileRepository.setup();
+  /// Delete Cache
+  Future(() async {
+    await TmpCacheDirectory.setup();
+    await TmpCacheDirectory.deleteFiles();
+  }).ignore();
 
   /// Riverpod
   runApp(

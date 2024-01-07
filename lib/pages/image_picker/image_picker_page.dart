@@ -1,9 +1,7 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sample/repositories/file/file_repository.dart';
+import 'package:flutter_sample/pages/image_picker/tmp_cache_directory.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerPage extends StatefulWidget {
@@ -39,11 +37,11 @@ class _State extends State<ImagePickerPage> {
       setState(() {
         _imageBytes = bytes;
       });
-      File(xFile.path).deleteSync();
+      // File(xFile.path).deleteSync();
     }
 
-    void onClearTempFiles() {
-      FileRepository.getInstance.clearTempFiles();
+    Future<void> onClearTempFiles() async {
+      await TmpCacheDirectory.deleteFiles();
     }
 
     return Scaffold(
@@ -76,8 +74,8 @@ class _State extends State<ImagePickerPage> {
               children: [
                 Flexible(
                   child: FilledButton(
-                    onPressed: () {
-                      final files = FileRepository.getInstance.fetchTempFiles();
+                    onPressed: () async {
+                      final files = await TmpCacheDirectory.fetchFiles();
                       if (files.isEmpty) {
                         debugPrint('empty');
                         return;
