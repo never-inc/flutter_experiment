@@ -19,22 +19,22 @@ class TmpCacheDirectory {
   }
 
   static Future<List<File>> fetchFiles() async {
-    final list = await compute<String, List<File>>(
-      (path) {
-        return Directory(path)
+    final list = await compute<Directory, List<File>>(
+      (dir) {
+        return dir
             .listSync(recursive: true, followLinks: false)
             .whereType<File>()
             .toList();
       },
-      _directory.path,
+      _directory,
     );
     return list;
   }
 
   static Future<void> deleteFiles() async {
-    await compute<String, void>(
-      (path) {
-        final list = Directory(path)
+    await compute<Directory, void>(
+      (dir) {
+        final list = dir
             .listSync(recursive: true, followLinks: false)
             .whereType<File>()
             .toList();
@@ -43,7 +43,7 @@ class TmpCacheDirectory {
           debugPrint('delete: ${file.path}');
         }
       },
-      _directory.path,
+      _directory,
     );
   }
 }
