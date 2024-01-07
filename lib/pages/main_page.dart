@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample/pages/flutter_bloc/index.dart' as flutter_bloc;
 import 'package:flutter_sample/pages/graph_ql/graph_ql_sample_page.dart';
+import 'package:flutter_sample/pages/image_picker/image_picker_page.dart';
 import 'package:flutter_sample/pages/memory_leaks/memory_leaks_sample_page.dart';
 import 'package:flutter_sample/pages/riverpod/index.dart' as riverpod;
 
@@ -68,6 +69,19 @@ class MainPage extends StatelessWidget {
                 ),
                 onTap: () {
                   GraphQLSamplePage.show(context);
+                },
+              ),
+              const Divider(height: 1),
+              ListTile(
+                title: const Text(
+                  'ImagePicker',
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 16,
+                ),
+                onTap: () {
+                  ImagePickerPage.show(context);
                 },
               ),
               const Divider(height: 1),
