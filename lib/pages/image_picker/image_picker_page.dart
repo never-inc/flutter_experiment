@@ -42,6 +42,10 @@ class _State extends State<ImagePickerPage> {
       File(xFile.path).deleteSync();
     }
 
+    void onClearTempFiles() {
+      FileRepository.getInstance.clearTempFiles();
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -90,9 +94,7 @@ class _State extends State<ImagePickerPage> {
                 ),
                 Flexible(
                   child: FilledButton(
-                    onPressed: () {
-                      FileRepository.getInstance.clearTempFiles();
-                    },
+                    onPressed: onClearTempFiles,
                     child: const Text(
                       'キャッシュ削除',
                       maxLines: 1,
