@@ -20,11 +20,8 @@ void main() {
         /// テスト対象にモックをセット
         final repository = GithubApiRepository(original.MockClient());
 
-        /// テスト実施
+        /// テスト実施 & 検証
         final res = await repository.fetchUsers();
-
-        /// テスト結果を検証
-        expect(res.isNotEmpty, isTrue);
         expect(res.length, 1);
       },
     );
@@ -48,11 +45,8 @@ void main() {
         /// テスト対象にモックをセット
         final repository = GithubApiRepository(mockClient);
 
-        /// テスト実施
+        /// テスト実施 & 検証
         final res = await repository.fetchUsers();
-
-        /// テスト結果を検証
-        expect(res.isNotEmpty, isTrue);
         expect(res.length, 1);
         verify(mockClient.get(any)).called(1);
       },
