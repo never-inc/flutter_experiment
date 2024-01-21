@@ -13,19 +13,20 @@ dependencies:
 
   # Riverpod
   flutter_riverpod: ^2.4.9
+  riverpod_annotation: ^2.3.3
 
   # Bloc
   flutter_bloc: ^8.1.3
 
   # DI
-  get_it: ^7.6.6
+  get_it: ^7.6.7
 
   # Local Database
   shared_preferences: ^2.2.0
   flutter_secure_storage: ^8.0.0
 
   # http
-  http:
+  http: ^1.2.0
 
   # Graphql
   graphql_flutter:
@@ -36,6 +37,13 @@ dependencies:
   # Path
   path_provider: ^2.1.1
 
+  # Freezed
+  freezed_annotation: ^2.4.1
+
+  # PullToRefresh
+  pull_to_refresh_flutter3: ^2.0.2
+
+  url_launcher: ^6.2.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -43,7 +51,7 @@ dev_dependencies:
     sdk: flutter
 
   # Mock
-  mockito: ^5.4.2
+  mockito: ^5.4.4
 
   # Static analysis
   pedantic_mono: ^1.25.0
@@ -53,6 +61,13 @@ dev_dependencies:
 
   # Graphql
   graphql_codegen: ^0.13.5
+
+  # Riverpod
+  riverpod_generator: ^2.3.9
+
+  # Freezed
+  freezed: ^2.4.6
+  json_serializable: ^6.7.1
 
 flutter:
   uses-material-design: true
