@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_sample/pages/github_users/entities/user.dart';
-import 'package:flutter_sample/pages/github_users/repositories/github_api_repository.dart';
+import 'package:flutter_sample/repositories/github_api/github_api_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'github_users_controller.g.dart';

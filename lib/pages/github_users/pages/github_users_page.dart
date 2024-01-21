@@ -52,10 +52,10 @@ class GithubUsersPage extends ConsumerWidget {
               itemBuilder: (BuildContext context, int index) {
                 final data = items[index];
                 return ListTile(
-                  leading: CircleAvatar(
-                    child: Image.network(
-                      data.avatarUrl ?? '',
-                    ),
+                  leading: Image.network(
+                    data.avatarUrl ?? '',
+                    width: 40,
+                    height: 40,
                   ),
                   title: Text(data.login),
                   subtitle: Text(data.htmlUrl ?? '-'),
