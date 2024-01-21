@@ -9,24 +9,29 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'github_api_repository.g.dart';
 
 @Riverpod(keepAlive: true)
+http.Client client(ClientRef ref) {
+  return http.Client();
+}
+
+@Riverpod(keepAlive: true)
 GithubApiRepository githubApiRepository(GithubApiRepositoryRef ref) {
-  return GithubApiRepository(http.Client());
+  return GithubApiRepository(ref);
 }
 
 class GithubApiRepository {
   GithubApiRepository(
-    this._client,
+    this._ref,
   );
 
-  final http.Client _client;
+  final GithubApiRepositoryRef _ref;
 
   Future<List<User>> fetchUsers({int? since, int? perPage}) async {
-    final res = await _client.get(
-      Uri.https('api.github.com', 'users', {
-        'since': since?.toString(),
-        'per_page': perPage?.toString(),
-      }),
-    );
+    final res = await _ref.read(clientProvider).get(
+          Uri.https('api.github.com', 'users', {
+            'since': since?.toString(),
+            'per_page': perPage?.toString(),
+          }),
+        );
 
     if (res.statusCode >= 300 && res.statusCode <= 500) {
       final json = jsonDecode(utf8.decode(res.bodyBytes)) as Map;

@@ -17,6 +17,7 @@ import 'package:flutter_sample/repositories/local_database/shared_preferences/im
 import 'package:flutter_sample/utils.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -55,6 +56,7 @@ void main() async {
         spr4.SharedPreferencesRepository.new,
       );
   }
+  getIt.registerLazySingleton<http.Client>(http.Client.new);
 
   /// Delete Cache
   Future(() async {
