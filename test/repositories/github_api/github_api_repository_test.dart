@@ -34,7 +34,12 @@ void main() {
         /// モックの返却データをセット
         final mockClient = MockClient();
         when(
-          mockClient.get(any),
+          mockClient.get(
+            Uri.https('api.github.com', 'users', {
+              'since': null,
+              'per_page': null,
+            }),
+          ),
         ).thenAnswer((_) {
           const data = dummyData;
           return Future.value(
@@ -48,7 +53,14 @@ void main() {
         /// テスト実施 & 検証
         final res = await repository.fetchUsers();
         expect(res.length, 1);
-        verify(mockClient.get(any)).called(1);
+        verify(
+          mockClient.get(
+            Uri.https('api.github.com', 'users', {
+              'since': null,
+              'per_page': null,
+            }),
+          ),
+        ).called(1);
       },
     );
 
@@ -58,7 +70,12 @@ void main() {
         /// モックの返却データをセット
         final mockClient = MockClient();
         when(
-          mockClient.get(any),
+          mockClient.get(
+            Uri.https('api.github.com', 'users', {
+              'since': null,
+              'per_page': null,
+            }),
+          ),
         ).thenAnswer((_) {
           const data = '{"message":"error"}';
           return Future.value(
@@ -71,7 +88,14 @@ void main() {
 
         /// テスト実施 & 検証
         expect(repository.fetchUsers(), throwsA(isA<AppException>()));
-        verify(mockClient.get(any)).called(1);
+        verify(
+          mockClient.get(
+            Uri.https('api.github.com', 'users', {
+              'since': null,
+              'per_page': null,
+            }),
+          ),
+        ).called(1);
       },
     );
   });
